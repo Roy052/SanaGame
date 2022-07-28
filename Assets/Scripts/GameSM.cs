@@ -9,6 +9,9 @@ public class GameSM : MonoBehaviour
     public Sprite background;
     public GameObject beforeBackground, currentBackground;
     public GameObject[] obstaclePrefabArray;
+    public GameObject star;
+    int starCount = 0;
+
     float lengthBackground = 14f;
     float colorChange = 0;
     float timeCheck = 0;
@@ -17,7 +20,8 @@ public class GameSM : MonoBehaviour
     float nextTime = 0;
     bool speedUp = true;
 
-    double distance = 0, endDistance = 4365;
+    public double endDistance;
+    double distance = 0;
     bool gameEnd = false;
     public Text distanceText;
 
@@ -61,7 +65,7 @@ public class GameSM : MonoBehaviour
         beforeBackground.transform.position -= new Vector3(speed * Time.deltaTime, 0, 0);
         currentBackground.transform.position -= new Vector3(speed * Time.deltaTime, 0, 0);
 
-        if (beforeBackground.transform.position.x < -lengthBackground * 2)
+        if (beforeBackground.transform.position.x < -lengthBackground * 2 + 0.5f)
         {
             Destroy(beforeBackground);
             beforeBackground = currentBackground;
@@ -84,14 +88,20 @@ public class GameSM : MonoBehaviour
             }
             obstacleList.Add(temp);
             timeCheck = 0;
-            nextTime = Random.Range(0, 2.2f);
+            nextTime = Random.Range(0.5f, 2.2f);
+            starCount++;
+            if(starCount >= 3)
+            {
+                StartCoroutine(StarGenerate(2, 10));
+                starCount = 0;
+            }
         }
         
     }
 
     private void FixedUpdate()
     {
-        colorChange += Time.fixedDeltaTime / 360000;
+        colorChange += Time.fixedDeltaTime / 150000;
 
         Color tempColor = beforeBackground.GetComponent<SpriteRenderer>().color;
         tempColor.r -= colorChange; tempColor.g -= colorChange; tempColor.b -= colorChange;
@@ -128,5 +138,16 @@ public class GameSM : MonoBehaviour
         }
 
         gm.GameToEnd();
+    }
+
+    IEnumerator StarGenerate(float start, float end)
+    {
+        yield return new WaitForSeconds(Random.Range(start,end));
+
+        GameObject temp =
+                Instantiate(star,
+                new Vector3(12, Random.Range(-border, border), 0), Quaternion.identity);
+        temp.transform.localScale = new Vector3(0.3f, 0.3f, 1);
+        temp.GetComponent<Twinkle>().onTwinkle = true;
     }
 }

@@ -20,14 +20,28 @@ public class GameManager : MonoBehaviour
 
     public void MidToGame()
     {
-        SceneManager.LoadScene(2);
-        bgmLoader.MidMusicON();
+        bgmLoader.MusicStop();
+        StartCoroutine( WaitForLoad(2));
     }
 
     public void GameToEnd()
     {
         bgmLoader.MusicStop();
-        SceneManager.LoadScene(3);
-        bgmLoader.EndMusicON();
+        StartCoroutine(WaitForLoad(3));
+    }
+
+    public void EndToMenu()
+    {
+        bgmLoader.MusicStop();
+        StartCoroutine(WaitForLoad(0));
+    }
+
+    IEnumerator WaitForLoad(int scenenum)
+    {
+        yield return new WaitForSeconds(1.2f);
+        SceneManager.LoadScene(scenenum);
+        if(scenenum == 2) bgmLoader.MidMusicON();
+        else if(scenenum == 3) bgmLoader.EndMusicON();
+        else bgmLoader.StartMusicON();
     }
 }

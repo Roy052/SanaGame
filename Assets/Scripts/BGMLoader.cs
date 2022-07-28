@@ -30,23 +30,44 @@ public class BGMLoader : MonoBehaviour
     public void StartMusicON()
     {
         audioSource.clip = start;
-        audioSource.Play();
+        StartCoroutine(VolumeUp());
     }
 
     public void MidMusicON()
     {
         audioSource.clip = mid;
-        audioSource.Play();
+        StartCoroutine(VolumeUp());
     }
 
     public void EndMusicON()
     {
         audioSource.clip = end;
-        audioSource.Play();
+        StartCoroutine(VolumeUp());
     }
 
     public void MusicStop()
     {
+        StartCoroutine(VolumeDown());
+    }
+
+    IEnumerator VolumeUp()
+    {
+        audioSource.Play();
+        while (audioSource.volume < 1)
+        {
+            audioSource.volume += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        
+    }
+
+    IEnumerator VolumeDown()
+    {
+        while(audioSource.volume > 0)
+        {
+            audioSource.volume -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
         audioSource.Stop();
     }
 }

@@ -7,9 +7,11 @@ public class MenuObject : MonoBehaviour
     GameManager gm;
     public MenuManager mm;
     public GameObject background, star;
+    public bool onStart;
     void Start()
     {
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        onStart = false;
         StartCoroutine(ShrinkEffect());
     }
 
@@ -21,10 +23,10 @@ public class MenuObject : MonoBehaviour
     IEnumerator ShrinkEffect()
     {
         float timeTemp = 0;
-        while(timeTemp < 1)
+        while(timeTemp < 2f)
         {
-            this.transform.localScale -= new Vector3(0.7f * Time.deltaTime, 0.7f * Time.deltaTime, 0);
-            background.transform.localScale -= new Vector3(0.7f * Time.deltaTime, 0.7f * Time.deltaTime, 0);
+            this.transform.localScale -= new Vector3(0.7f * 0.5f *  Time.deltaTime, 0.7f * 0.5f * Time.deltaTime, 0);
+            background.transform.localScale -= new Vector3(0.7f * 0.5f * Time.deltaTime, 0.7f * 0.5f * Time.deltaTime, 0);
             timeTemp += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
@@ -32,6 +34,7 @@ public class MenuObject : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if(onStart)
         StartCoroutine(BeforeStart());
         
     }

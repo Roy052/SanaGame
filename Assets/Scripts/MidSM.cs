@@ -10,10 +10,10 @@ public class MidSM : MonoBehaviour
     public Sprite[] sanaChange;
     GameManager gm;
     string[,] texts = { 
-        {"Once time ago,","There is SANA who is speaker of space"}, 
-        {"A", "A"},
-        {"B", "B"},
-        {"C", "C"}
+        {"Once upon a time,","There is SANA who is speaker of space"}, 
+        {"After meeting with the council", "She joined the council"},
+        {"As a member of the council", "They laughed and cried together"},
+        {"But now it's time for her", "to resign and go on a long journey."}
     };
     int textLength;
     void Start()
@@ -58,7 +58,7 @@ public class MidSM : MonoBehaviour
                 yield return new WaitForEndOfFrame();
             }
 
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(2);
 
             tempColor = firstText.color;
 

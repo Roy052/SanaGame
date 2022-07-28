@@ -761,6 +761,11 @@ MonoBehaviour:
   obstaclePrefabArray:
   - {fileID: 343470854593276264, guid: 3f66f09fe5d36ca43a4cd5e1ebe3e3b4, type: 3}
   - {fileID: 1900281579738374419, guid: 38f4c5969061bfb448c257d971c9c3f7, type: 3}
+  - {fileID: 1285937601926700252, guid: bdaaf3e47dea1704ea6a78c753801688, type: 3}
+  - {fileID: 6739919762272169340, guid: 2792f52a64edbf84f8fc66a3001301a5, type: 3}
+  - {fileID: 8198044860580497520, guid: 76b74213e7359064cbd4954f7f37a57e, type: 3}
+  star: {fileID: 3343613957159020421, guid: 3c52426f7a1714f47bb87be3c64a2b8a, type: 3}
+  endDistance: 500
   distanceText: {fileID: 487738203}
   walls:
   - {fileID: 928345257}

@@ -7,8 +7,12 @@ public class MenuManager : MonoBehaviour
 {
     public Text mainText, tabToStartText;
     public GameObject star;
+    BGMLoader bgmLoader;
+    public MenuObject menuObject;
     void Start()
     {
+
+        bgmLoader = GameObject.Find("BGMLoader").GetComponent<BGMLoader>();
         Color tempColor;
 
         tempColor = mainText.color;
@@ -20,6 +24,8 @@ public class MenuManager : MonoBehaviour
         tabToStartText.color = tempColor;
 
         StartCoroutine(StartEffect());
+
+        bgmLoader.StartMusicON();
     }
 
     void Update()
@@ -29,7 +35,7 @@ public class MenuManager : MonoBehaviour
 
     IEnumerator StartEffect()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.5f);
         float timeTemp = 0;
         Color tempColor;
         tempColor = mainText.color;
@@ -56,6 +62,7 @@ public class MenuManager : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         star.GetComponent<Twinkle>().onTwinkle = true;
+        menuObject.onStart = true;
     }
 
     public IEnumerator EndMenuEffect()
