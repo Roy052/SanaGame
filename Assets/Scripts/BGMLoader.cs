@@ -53,7 +53,7 @@ public class BGMLoader : MonoBehaviour
     IEnumerator VolumeUp()
     {
         audioSource.Play();
-        while (audioSource.volume < 1)
+        while (audioSource.volume < 0.6f)
         {
             audioSource.volume += Time.deltaTime;
             yield return new WaitForEndOfFrame();

@@ -13,7 +13,7 @@ public class MidSM : MonoBehaviour
         {"Once upon a time,","There is SANA who is speaker of space"}, 
         {"After meeting with the council", "She joined the council"},
         {"As a member of the council", "They laughed and cried together"},
-        {"But now it's time for her", "to resign and go on a long journey."}
+        {"But now it's time for her", "to graduate and embark on a long journey."}
     };
     int textLength;
     void Start()

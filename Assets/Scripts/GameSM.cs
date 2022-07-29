@@ -9,15 +9,15 @@ public class GameSM : MonoBehaviour
     public Sprite background;
     public GameObject beforeBackground, currentBackground;
     public GameObject[] obstaclePrefabArray;
-    public GameObject star;
+    public GameObject star, limiterGet;
     int starCount = 0;
 
     float lengthBackground = 14f;
     float colorChange = 0;
-    float timeCheck = 0;
+    float timeCheck = 0, timeCheck1 = 0;
     List<GameObject> obstacleList;
     float border = 4.6f;
-    float nextTime = 0;
+    float nextTime = 0, limiterNextTime = 0;
     bool speedUp = true;
 
     public double endDistance;
@@ -29,6 +29,10 @@ public class GameSM : MonoBehaviour
 
     GameManager gm;
 
+    public bool bigSanaModeON = false;
+    public AudioClip[] sfxClips;
+    AudioSource sfxaudioSource;
+
     public GameObject[] planets;
     readonly float[] planetLocation = { 77.79f, 628.32f, 1280.58f,2719.73f, 4357.85f };
     int planetCount = 0;
@@ -36,8 +40,10 @@ public class GameSM : MonoBehaviour
     {
         obstacleList = new List<GameObject>();
         nextTime = Random.Range(0, 1.2f);
+        limiterNextTime = Random.Range(0, 2.4f);
         speed = 3f;
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        sfxaudioSource = this.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -72,11 +78,11 @@ public class GameSM : MonoBehaviour
             currentBackground = Instantiate(currentBackground, new Vector3(2 * lengthBackground, 0, 0), Quaternion.identity);
         }
 
-        if (speedUp == true && speed < 20)
-            speed += 0.5f * Time.deltaTime;
+        if (speedUp == true && speed < 15)
+            speed += 0.3f * Time.deltaTime;
 
         timeCheck += Time.deltaTime;
-        if (gameEnd == false && timeCheck >= 1 + nextTime - (speed / 20.0))
+        if (gameEnd == false && timeCheck >= 1 + nextTime - (speed / 15.0))
         {
             int typetemp = Random.Range(0, obstaclePrefabArray.Length);
             GameObject temp =
@@ -88,13 +94,24 @@ public class GameSM : MonoBehaviour
             }
             obstacleList.Add(temp);
             timeCheck = 0;
-            nextTime = Random.Range(0.5f, 2.2f);
+            nextTime = Random.Range(0.5f, 1.7f);
             starCount++;
             if(starCount >= 3)
             {
                 StartCoroutine(StarGenerate(2, 10));
                 starCount = 0;
             }
+        }
+
+        timeCheck1 += Time.deltaTime;
+        if(gameEnd == false && bigSanaModeON == false && timeCheck1 >= 4 + limiterNextTime - (speed / 15.0))
+        {
+            GameObject temp =
+                Instantiate(limiterGet,
+                new Vector3(12, Random.Range(-border, border), 0), Quaternion.identity);
+            temp.GetComponent<Dice>().angle = Random.Range(0, 359);
+            timeCheck1 = 0;
+            limiterNextTime = Random.Range(1f, 3.4f);
         }
         
     }
@@ -149,5 +166,36 @@ public class GameSM : MonoBehaviour
                 new Vector3(12, Random.Range(-border, border), 0), Quaternion.identity);
         temp.transform.localScale = new Vector3(0.3f, 0.3f, 1);
         temp.GetComponent<Twinkle>().onTwinkle = true;
+    }
+
+    public void EatBerrySfx()
+    {
+        sfxaudioSource.clip = sfxClips[0];
+        sfxaudioSource.Play();
+    }
+
+    public void LimiterSfx()
+    {
+        sfxaudioSource.clip = sfxClips[1];
+        sfxaudioSource.Play();
+    }
+
+    public void BigSanaSfx()
+    {
+        sfxaudioSource.clip = sfxClips[2];
+        sfxaudioSource.Play();
+    }
+
+    public void TouchCuteSfx()
+    {
+        sfxaudioSource.clip = sfxClips[3];
+        sfxaudioSource.Play();
+    }
+
+    public void HitSanaSfx()
+    {
+        sfxaudioSource.clip = sfxClips[4];
+        sfxaudioSource.Play();
+
     }
 }
