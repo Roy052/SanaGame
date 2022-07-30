@@ -12,6 +12,7 @@ public class EndSM : MonoBehaviour
     int[] mentionRandomList;
     Mention_Info mention_Info;
     public EndObject endObject;
+    float textSizeDiff;
     void Start()
     {
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -21,6 +22,8 @@ public class EndSM : MonoBehaviour
 
         int temp;
         bool isExist;
+
+        
         for(int i = 0; i < mentions.Length; i++)
         {
             while (true)
@@ -43,6 +46,9 @@ public class EndSM : MonoBehaviour
             }
         }
         Debug.Log(mentionRandomList[0] + ", " + mentionRandomList[1] + ", " + mentionRandomList[2]);
+        
+        //mentionRandomList = new int[5] { 6, 10, 11, 0, 1 };
+        textSizeDiff = 16.5f;
 
         StartCoroutine(EndEffect());
     }
@@ -59,7 +65,9 @@ public class EndSM : MonoBehaviour
             mentions[i].color = tempColor;
             nickname[i].color = tempColor;
             mentions[i].text = mention_Info.mentions[mentionRandomList[i]];
+            mentions[i].fontSize = 50 - (int)(mentions[i].text.Length / textSizeDiff);
             nickname[i].text = "- " + mention_Info.nicknames[mentionRandomList[i]] + " -";
+            
             while (tempColor.a < 1)
             {
                 tempColor.a += 0.8f * Time.deltaTime;
@@ -69,6 +77,8 @@ public class EndSM : MonoBehaviour
                 yield return new WaitForEndOfFrame();
             }
         }
+
+        yield return new WaitForSeconds(3);
         
         while(mentions[0].fontSize > 2)
         {
@@ -76,6 +86,8 @@ public class EndSM : MonoBehaviour
             {
                 mentions[i].fontSize -= 1;
                 nickname[i].fontSize -= 1;
+                if (mentions[i].fontSize == 1)
+                    mentions[i].text = "";
                 if (nickname[i].fontSize == 1)
                     nickname[i].text = "";
             }

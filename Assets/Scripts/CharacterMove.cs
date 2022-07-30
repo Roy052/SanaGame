@@ -69,6 +69,8 @@ public class CharacterMove : MonoBehaviour
 
     public IEnumerator BecomeBigSana(){
 
+        alreadyHit = true; bigsanaMode = true;
+
         float currentSpeed = gameSM.speed;
         gameSM.speed = 15;
         gameSM.bigSanaModeON = true;
@@ -83,7 +85,7 @@ public class CharacterMove : MonoBehaviour
         else tempMovement.y = 0.5f;
         this.transform.position += tempMovement;
 
-        alreadyHit = true; bigsanaMode = true;
+        
         yield return new WaitForSeconds(5);
         
         float tempTime = 0;

@@ -34,7 +34,7 @@ public class GameSM : MonoBehaviour
     AudioSource sfxaudioSource;
 
     public GameObject[] planets;
-    readonly float[] planetLocation = { 77.79f, 628.32f, 1280.58f,2719.73f, 4357.85f };
+    readonly float[] planetLocation = { 77.79f, 628.32f, 1280.58f, 2719.73f, 4351.40f };
     int planetCount = 0;
     void Start()
     {
@@ -55,7 +55,7 @@ public class GameSM : MonoBehaviour
         }
 
         if (gameEnd == false)
-            distance += speed * Time.deltaTime;
+            distance += 2 * speed * Time.deltaTime;
         else
             distance = endDistance;
 
@@ -71,7 +71,7 @@ public class GameSM : MonoBehaviour
         beforeBackground.transform.position -= new Vector3(speed * Time.deltaTime, 0, 0);
         currentBackground.transform.position -= new Vector3(speed * Time.deltaTime, 0, 0);
 
-        if (beforeBackground.transform.position.x < -lengthBackground * 2 + 0.5f)
+        if (beforeBackground.transform.position.x < -lengthBackground * 2 + 0.7f)
         {
             Destroy(beforeBackground);
             beforeBackground = currentBackground;
@@ -118,7 +118,7 @@ public class GameSM : MonoBehaviour
 
     private void FixedUpdate()
     {
-        colorChange += Time.fixedDeltaTime / 150000;
+        colorChange += Time.fixedDeltaTime / (150000 * 20);
 
         Color tempColor = beforeBackground.GetComponent<SpriteRenderer>().color;
         tempColor.r -= colorChange; tempColor.g -= colorChange; tempColor.b -= colorChange;

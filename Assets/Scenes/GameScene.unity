@@ -921,7 +921,7 @@ MonoBehaviour:
   - {fileID: 8198044860580497520, guid: 18efe0a55492da340ad09c7d3d3d8260, type: 3}
   star: {fileID: 3343613957159020421, guid: 3c52426f7a1714f47bb87be3c64a2b8a, type: 3}
   limiterGet: {fileID: 1049005958256129159, guid: 9fe50ac3c5074744683913a6af8298ac, type: 3}
-  endDistance: 500
+  endDistance: 4370
   distanceText: {fileID: 487738203}
   walls:
   - {fileID: 928345257}
