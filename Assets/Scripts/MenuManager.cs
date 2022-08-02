@@ -9,9 +9,12 @@ public class MenuManager : MonoBehaviour
     public GameObject star;
     BGMLoader bgmLoader;
     public MenuObject menuObject;
+    int languageType = 0;
+    GameManager gm;
     void Start()
     {
-
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        languageType = gm.languageType;
         bgmLoader = GameObject.Find("BGMLoader").GetComponent<BGMLoader>();
         Color tempColor;
 
@@ -26,11 +29,6 @@ public class MenuManager : MonoBehaviour
         StartCoroutine(StartEffect());
 
         bgmLoader.StartMusicON();
-    }
-
-    void Update()
-    {
-        
     }
 
     IEnumerator StartEffect()
@@ -79,6 +77,20 @@ public class MenuManager : MonoBehaviour
             tabToStartText.color = tempColor;
             timeTemp += Time.deltaTime;
             yield return new WaitForEndOfFrame();
+        }
+    }
+    
+    public void LangaugeChange(int val)
+    {
+        if(val == 0)
+        {
+            mainText.text = "Sana's" + "\nLong Long Journey";
+            tabToStartText.text = "- Tab To Start -";
+        }
+        else
+        {
+            mainText.text = "사나의" + "\n머나먼 여행";
+            tabToStartText.text = "- 탭하고 시작하기 -";
         }
     }
 }

@@ -36,6 +36,8 @@ public class GameSM : MonoBehaviour
     public GameObject[] planets;
     readonly float[] planetLocation = { 77.79f, 628.32f, 1280.58f, 2719.73f, 4351.40f };
     int planetCount = 0;
+
+    public Slider distanceSlider;
     void Start()
     {
         obstacleList = new List<GameObject>();
@@ -44,6 +46,7 @@ public class GameSM : MonoBehaviour
         speed = 3f;
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         sfxaudioSource = this.GetComponent<AudioSource>();
+        distanceSlider.enabled = false;
     }
 
     void Update()
@@ -60,6 +63,7 @@ public class GameSM : MonoBehaviour
             distance = endDistance;
 
         distanceText.text = ((int) distance).ToString();
+        distanceSlider.value = (float) (distance / endDistance);
 
         if (planetCount < planetLocation.Length && distance > planetLocation[planetCount])
         {

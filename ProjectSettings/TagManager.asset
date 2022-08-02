@@ -9,6 +9,7 @@ TagManager:
   - Wall
   - Star
   - Limiter
+  - PauseMenuManager
   layers:
   - Default
   - TransparentFX
@@ -54,4 +55,7 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 2826418845
+    locked: 0
+  - name: PauseMenu
+    uniqueID: 3913082659
     locked: 0

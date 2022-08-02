@@ -141,6 +141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c050773a993c6b4d8319cf460d72673, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  start: {fileID: 0}
-  mid: {fileID: 0}
-  end: {fileID: 0}
+  start: {fileID: 8300000, guid: 3acb3aa4df98f6441874b3a9336e7692, type: 3}
+  mid: {fileID: 8300000, guid: dd02827869a11534cbb58e53c30752ac, type: 3}
+  end: {fileID: 8300000, guid: 48b5079c954224c4e9c7405235e12ede, type: 3}

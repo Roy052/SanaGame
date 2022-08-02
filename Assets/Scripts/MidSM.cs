@@ -11,16 +11,25 @@ public class MidSM : MonoBehaviour
     GameManager gm;
     string[,] texts = { 
         {"Once upon a time,","There is SANA who is speaker of space"}, 
-        {"After meeting with the council", "She joined the council"},
-        {"As a member of the council", "They laughed and cried together"},
+        {"After meeting with the council", "She joined the council."},
+        {"As a member of the council", "They laughed and cried together."},
         {"But now it's time for her", "to graduate and embark on a long journey."}
     };
-    int textLength;
+    string[,] texts_Korean =
+    {
+        {"옛날옛적에,","공간의 대변인인 사나가 있었다."},
+        {"의회와 만난 이후로", "그녀는 의회에 합류했다."},
+        {"의회의 일원으로", "그들은 함께 웃고 울었다."},
+        {"하지만 그녀는 시간이 되어", "졸업을 하며 먼 여행을 떠난다."}
+    };
+    int textLength, count = -1;
+    int languageType = 0;
     void Start()
     {
         StartCoroutine(TextEffect());
         textLength = texts.Length / 2;
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        languageType = gm.languageType;
     }
 
     IEnumerator TextEffect()
@@ -28,13 +37,16 @@ public class MidSM : MonoBehaviour
         yield return new WaitForSeconds(1);
         float timeTemp = 0;
         Color tempColor;
-        int count = 0;
+        count = 0;
         while(count < textLength)
         {
             tempColor = firstText.color;
             tempColor.a = 0;
             firstText.color = tempColor;
-            firstText.text = texts[count, 0];
+            if (languageType == 0)
+                firstText.text = texts[count, 0];
+            else
+                firstText.text = texts_Korean[count, 0];
             timeTemp = 0;
             while (timeTemp < 1)
             {
@@ -47,7 +59,10 @@ public class MidSM : MonoBehaviour
             tempColor = secondText.color;
             tempColor.a = 0;
             secondText.color = tempColor;
-            secondText.text = texts[count, 1];
+            if (languageType == 0)
+                secondText.text = texts[count, 1];
+            else
+                secondText.text = texts_Korean[count, 1];
 
             timeTemp = 0;
             while (timeTemp < 1)
@@ -101,5 +116,23 @@ public class MidSM : MonoBehaviour
         yield return new WaitForSeconds(0.7f);
 
         gm.MidToGame();
+    }
+
+    public void LanguageChange(int val)
+    {
+        languageType = val;
+        if(count != -1)
+        {
+            if (languageType == 0)
+            {
+                firstText.text = texts[count, 0];
+                secondText.text = texts[count, 1];
+            }
+            else
+            {
+                firstText.text = texts_Korean[count, 0];
+                secondText.text = texts_Korean[count, 1];
+            }
+        }
     }
 }

@@ -321,7 +321,7 @@ GameObject:
   - component: {fileID: 617401897}
   m_Layer: 0
   m_Name: MidSM
-  m_TagString: Untagged
+  m_TagString: SceneManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -884,6 +884,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9090785968224048852, guid: d8d1ec731daba6e43876667d388ebd2e, type: 3}
+      propertyPath: pauseMenuManager
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 9090785968224048853, guid: d8d1ec731daba6e43876667d388ebd2e, type: 3}
       propertyPath: m_Name
       value: GameManager

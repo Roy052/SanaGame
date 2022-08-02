@@ -33,7 +33,22 @@ public class Mention_Info
         "I hope you are always happy.",
         "Thank you for giving me the joy of having an oshi sana, you're the best!",
         "I love you and thank you, SANA",
-        "She's only become a universe that's too big to be observed."
+        "She's only become a universe that's too big to be observed.",
+        "Sana, I hope you get well soon and always be happy.",
+        "Sana is our \'Friend S\'",
+        "My OC will be you forever.",
+        "The universe is fun now thanks to you",
+        "Let\'s go, I know, we\'ll make it somehow.  The universe is fun now.  We\'re not alone.",
+        "May any road you journey on be bathed with the love of those you meet. ",
+        "Thank you Sana for creating such a wonderful and amazing community of Sanallites who appreciate and love you for you. " +
+            "Sana will always have a place in our hearts and will be loved and cherished by all of us",
+        "I hope to meet you again beyond another infinite space.",
+        "Sana is eternal sana thank you",
+        "I will never forget Sana's universe",
+        "It is only the beginning. Sana whispering of this from the stars.",
+        "For Sana who will watch us in the universe forever",
+        "Sana is Eternal!!",
+        "sananana, I can\'t forget the happiness you gave me."
     };
     readonly public string[] nicknames =
     {
@@ -55,6 +70,20 @@ public class Mention_Info
         "LMN",
         "Derpy necron",
         "han",
-        "gaeulkun"
+        "gaeulkun",
+        "천신황",
+        "[Nimo] 니모",
+        "삼동(3east)",
+        "Dewy",
+        "Smile",
+        "Hammer",
+        "BlueGemini",
+        "김준어キムジュンオ",
+        "문어초밥",
+        "데니드",
+        "Lookup Universe",
+        "Anonymous",
+        "누텔라",
+        "KFP- 치코리타"
     };
 }

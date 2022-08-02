@@ -20,6 +20,7 @@ public class CharacterMove : MonoBehaviour
         rb2d = this.GetComponent<Rigidbody2D>();
         gameSM = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<GameSM>();
         movable = true;
+        limiterBar.enabled = false;
     }
 
     // Update is called once per frame

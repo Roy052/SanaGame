@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6739919762272169216}
   - component: {fileID: 6739919762272169219}
-  - component: {fileID: 6739919762272169218}
   - component: {fileID: 6739919762272169341}
   - component: {fileID: -5812568234576472778}
+  - component: {fileID: 3519053783407687577}
   m_Layer: 0
   m_Name: 1_Berry
   m_TagString: Obstacle
@@ -87,32 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &6739919762272169218
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6739919762272169340}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.028977871, y: -0.0010149479}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.6, y: 1.6}
-    newSize: {x: 4.5, y: 4.5}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.4780655, y: 1.2894874}
-  m_EdgeRadius: 0
 --- !u!114 &6739919762272169341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,3 +112,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9441cf4b2712d42428b0edd6f8a27cff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!70 &3519053783407687577
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6739919762272169340}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.029380322, y: 0}
+  m_Size: {x: 1.272614, y: 1.272614}
+  m_Direction: 0
