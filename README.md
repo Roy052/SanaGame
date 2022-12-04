@@ -48,3 +48,84 @@
      <td><img src = "https://postfiles.pstatic.net/MjAyMjA4MDFfMTI3/MDAxNjU5MzMwODAxOTI1.GWwJzBX5V1b-ubqEyGZDpCZPxJOMTC3ju36pHG82cYQg.lAN9ou64svdpNpIa3q-vCsura4jk8hso3nfKY1Vb6Xgg.JPEG.tdj04131/KakaoTalk_20220801_141114267_04.jpg?type=w773" height = 500></td>
       </table>
   </div>
+
+   <div>
+       <h2> 주요 코드 </h2>
+       <h4> MainSM SetUp 함수 </h4>
+    </div>
+    
+```csharp
+if(gameEnd == false && distance > endDistance)
+        {
+            StartCoroutine(GameToEndEffect());
+            gameEnd = true;
+        }
+
+        if (gameEnd == false)
+            distance += 2 * speed * Time.deltaTime;
+        else
+            distance = endDistance;
+
+        distanceText.text = ((int) distance).ToString();
+        distanceSlider.value = (float) (distance / endDistance);
+
+        if (planetCount < planetLocation.Length && distance > planetLocation[planetCount])
+        {
+            GameObject temp = Instantiate(planets[planetCount],
+                new Vector3(12, 0, 0), Quaternion.identity);
+            planetCount++;
+        }
+
+        beforeBackground.transform.position -= new Vector3(speed * Time.deltaTime, 0, 0);
+        currentBackground.transform.position -= new Vector3(speed * Time.deltaTime, 0, 0);
+
+        if (beforeBackground.transform.position.x < -lengthBackground * 2 + 0.7f)
+        {
+            Destroy(beforeBackground);
+            beforeBackground = currentBackground;
+            currentBackground = Instantiate(currentBackground, new Vector3(2 * lengthBackground, 0, 0), Quaternion.identity);
+        }
+
+        if (speedUp == true && speed < 15)
+            speed += 0.3f * Time.deltaTime;
+
+        timeCheck += Time.deltaTime;
+        if (gameEnd == false && timeCheck >= 1 + nextTime - (speed / 15.0))
+        {
+            int typetemp = Random.Range(0, obstaclePrefabArray.Length);
+            GameObject temp =
+                Instantiate(obstaclePrefabArray[typetemp],
+                new Vector3(12, Random.Range(-border, border), 0), Quaternion.identity);
+            if(typetemp == 0)
+            {
+                temp.GetComponent<Dice>().angle = Random.Range(0, 359);
+            }
+            obstacleList.Add(temp);
+            timeCheck = 0;
+            nextTime = Random.Range(0.5f, 1.7f);
+            starCount++;
+            if(starCount >= 3)
+            {
+                StartCoroutine(StarGenerate(2, 10));
+                starCount = 0;
+            }
+        }
+
+        timeCheck1 += Time.deltaTime;
+        if(gameEnd == false && bigSanaModeON == false && timeCheck1 >= 4 + limiterNextTime - (speed / 15.0))
+        {
+            GameObject temp =
+                Instantiate(limiterGet,
+                new Vector3(12, Random.Range(-border, border), 0), Quaternion.identity);
+            temp.GetComponent<Dice>().angle = Random.Range(0, 359);
+            timeCheck1 = 0;
+            limiterNextTime = Random.Range(1f, 3.4f);
+        }
+```
+<div>
+    <h4> Eyelid(눈꺼풀) 클래스 </h4>
+</div>      
+    
+```csharp
+a
+```
