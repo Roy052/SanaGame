@@ -51,81 +51,73 @@
 
    <div>
        <h2> 주요 코드 </h2>
-       <h4> MainSM SetUp 함수 </h4>
+       <h4> GameSM Update 함수 속 거리 및 장애물 생성 </h4>
     </div>
     
 ```csharp
-if(gameEnd == false && distance > endDistance)
-        {
-            StartCoroutine(GameToEndEffect());
-            gameEnd = true;
-        }
 
-        if (gameEnd == false)
-            distance += 2 * speed * Time.deltaTime;
-        else
-            distance = endDistance;
+//거리 계산
+if (gameEnd == false)
+    distance += 2 * speed * Time.deltaTime;
+    else
+        distance = endDistance;
 
-        distanceText.text = ((int) distance).ToString();
-        distanceSlider.value = (float) (distance / endDistance);
+//거리 출력
+distanceText.text = ((int) distance).ToString();
+distanceSlider.value = (float) (distance / endDistance);
 
-        if (planetCount < planetLocation.Length && distance > planetLocation[planetCount])
-        {
-            GameObject temp = Instantiate(planets[planetCount],
-                new Vector3(12, 0, 0), Quaternion.identity);
-            planetCount++;
-        }
+//거리에 따라 행성 출현
+if (planetCount < planetLocation.Length && distance > planetLocation[planetCount])
+{
+    GameObject temp = Instantiate(planets[planetCount],
+    new Vector3(12, 0, 0), Quaternion.identity);
+    planetCount++;
+}
 
-        beforeBackground.transform.position -= new Vector3(speed * Time.deltaTime, 0, 0);
-        currentBackground.transform.position -= new Vector3(speed * Time.deltaTime, 0, 0);
+//배경 생성(배경 이미지를 이동 후 파괴, 생성)
+beforeBackground.transform.position -= new Vector3(speed * Time.deltaTime, 0, 0);
+currentBackground.transform.position -= new Vector3(speed * Time.deltaTime, 0, 0);
 
-        if (beforeBackground.transform.position.x < -lengthBackground * 2 + 0.7f)
-        {
-            Destroy(beforeBackground);
-            beforeBackground = currentBackground;
-            currentBackground = Instantiate(currentBackground, new Vector3(2 * lengthBackground, 0, 0), Quaternion.identity);
-        }
+if (beforeBackground.transform.position.x < -lengthBackground * 2 + 0.7f)
+{
+    Destroy(beforeBackground);
+    beforeBackground = currentBackground;
+    currentBackground = Instantiate(currentBackground, new Vector3(2 * lengthBackground, 0, 0), Quaternion.identity);
+}
 
-        if (speedUp == true && speed < 15)
-            speed += 0.3f * Time.deltaTime;
+//장애물 생성
+timeCheck += Time.deltaTime;
+if (gameEnd == false && timeCheck >= 1 + nextTime - (speed / 15.0))
+{
+    int typetemp = Random.Range(0, obstaclePrefabArray.Length);
+    GameObject temp =
+    Instantiate(obstaclePrefabArray[typetemp],
+    new Vector3(12, Random.Range(-border, border), 0), Quaternion.identity);
+    if(typetemp == 0)
+    {
+        temp.GetComponent<Dice>().angle = Random.Range(0, 359);
+    }
+    obstacleList.Add(temp);
+    timeCheck = 0;
+    nextTime = Random.Range(0.5f, 1.7f);
+    starCount++;
+    //배경 별 생성
+    if(starCount >= 3)
+    {
+        StartCoroutine(StarGenerate(2, 10));
+        starCount = 0;
+    }
+}
 
-        timeCheck += Time.deltaTime;
-        if (gameEnd == false && timeCheck >= 1 + nextTime - (speed / 15.0))
-        {
-            int typetemp = Random.Range(0, obstaclePrefabArray.Length);
-            GameObject temp =
-                Instantiate(obstaclePrefabArray[typetemp],
-                new Vector3(12, Random.Range(-border, border), 0), Quaternion.identity);
-            if(typetemp == 0)
-            {
-                temp.GetComponent<Dice>().angle = Random.Range(0, 359);
-            }
-            obstacleList.Add(temp);
-            timeCheck = 0;
-            nextTime = Random.Range(0.5f, 1.7f);
-            starCount++;
-            if(starCount >= 3)
-            {
-                StartCoroutine(StarGenerate(2, 10));
-                starCount = 0;
-            }
-        }
-
-        timeCheck1 += Time.deltaTime;
-        if(gameEnd == false && bigSanaModeON == false && timeCheck1 >= 4 + limiterNextTime - (speed / 15.0))
-        {
-            GameObject temp =
-                Instantiate(limiterGet,
-                new Vector3(12, Random.Range(-border, border), 0), Quaternion.identity);
-            temp.GetComponent<Dice>().angle = Random.Range(0, 359);
-            timeCheck1 = 0;
-            limiterNextTime = Random.Range(1f, 3.4f);
-        }
-```
-<div>
-    <h4> Eyelid(눈꺼풀) 클래스 </h4>
-</div>      
-    
-```csharp
-a
+//리미터 아이템 생성
+timeCheck1 += Time.deltaTime;
+if(gameEnd == false && bigSanaModeON == false && timeCheck1 >= 4 + limiterNextTime - (speed / 15.0))
+{
+    GameObject temp =
+    Instantiate(limiterGet,
+    new Vector3(12, Random.Range(-border, border), 0), Quaternion.identity);
+    temp.GetComponent<Dice>().angle = Random.Range(0, 359);
+    timeCheck1 = 0;
+    limiterNextTime = Random.Range(1f, 3.4f);
+}
 ```
