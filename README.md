@@ -23,9 +23,9 @@
   <div>
     <h2> 게임 스크린샷 </h2>
       <table>
-        <td><img src = "https://img.itch.zone/aW1hZ2UvMTYzOTMxMC85Njc1NjMzLnBuZw==/347x500/l5WrTq.png"></td>
+        <td><img src = "https://img.itch.zone/aW1hZ2UvMTYzOTMxMC8xMDg5Mzg4NS5wbmc=/347x500/dnXke%2B.png"></td>
         <td><img src = "https://img.itch.zone/aW1hZ2UvMTYzOTMxMC85Njc1NjMyLnBuZw==/347x500/TCN%2FW%2B.png"></td>
-        <td><img src = "https://img.itch.zone/aW1hZ2UvMTYzOTMxMC85Njc1NjM0LnBuZw==/347x500/TKKlMp.png"></td>
+        <td><img src = "https://img.itch.zone/aW1hZ2UvMTYzOTMxMC8xMDg5Mzg4Ni5wbmc=/347x500/Jf7u6c.png"></td>
       </table>
   </div>
     <div>
