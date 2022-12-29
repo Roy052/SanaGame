@@ -63,6 +63,9 @@ public class CharacterMove : MonoBehaviour
                 case 2:
                     gameSM.HitSanaSfx();
                     break;
+                case 3:
+                    gameSM.GiftSfx();
+                    break;
             }
                 
         }

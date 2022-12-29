@@ -78,7 +78,7 @@ public class Mention_Info
         "Smile",
         "Hammer",
         "BlueGemini",
-        "김준어キムジュンオ",
+        "김준어",
         "문어초밥",
         "데니드",
         "Lookup Universe",

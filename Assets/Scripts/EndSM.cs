@@ -79,26 +79,54 @@ public class EndSM : MonoBehaviour
         }
 
         yield return new WaitForSeconds(3);
-        
-        while(mentions[0].fontSize > 2)
+
+        while (mentions[0].fontSize > 15)
         {
             for (int i = 0; i < mentions.Length; i++)
             {
-                mentions[i].fontSize -= 1;
-                nickname[i].fontSize -= 1;
-                if (mentions[i].fontSize == 1)
+                StartCoroutine(FadeManager.FadeOut(mentions[i], 1));
+                StartCoroutine(FadeManager.FadeOut(nickname[i], 1));
+            }
+            yield return new WaitForSeconds(1);
+
+            for (int i = 0; i < mentions.Length; i++)
+            {
+                mentions[i].fontSize -= 6;
+                nickname[i].fontSize -= 2;
+                if (mentions[i].fontSize < 15)
                     mentions[i].text = "";
-                if (nickname[i].fontSize == 1)
+                if (nickname[i].fontSize < 15)
                     nickname[i].text = "";
             }
-            
-            yield return new WaitForFixedUpdate();
+
+            for (int i = 0; i < mentions.Length; i++)
+            {
+                StartCoroutine(FadeManager.FadeIn(mentions[i], 1));
+                StartCoroutine(FadeManager.FadeIn(nickname[i], 1));
+            }
+
+            yield return new WaitForSeconds(1);
+
+            bool breakpoint = false;
+
+            for (int i = 0; i < mentions.Length; i++)
+                if (mentions[i].fontSize < 20) breakpoint = true;
+
+            if (breakpoint) break;
+
+            yield return new WaitForSeconds(1);
         }
+
         for (int i = 0; i < mentions.Length; i++)
         {
             mentions[i].text = "";
             nickname[i].text = "";
+            StartCoroutine(FadeManager.FadeOut(mentions[i], 1));
+            StartCoroutine(FadeManager.FadeOut(nickname[i], 1));
         }
+
+        yield return new WaitForSeconds(1);
+
         for(int i = 0; i < stars.Length; i++)
         {
             stars[i].GetComponent<Twinkle>().onTwinkle = true;

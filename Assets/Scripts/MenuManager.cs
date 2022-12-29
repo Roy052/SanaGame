@@ -11,6 +11,8 @@ public class MenuManager : MonoBehaviour
     public MenuObject menuObject;
     int languageType = 0;
     GameManager gm;
+
+    [SerializeField] GameObject hat, tree;
     void Start()
     {
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -21,6 +23,8 @@ public class MenuManager : MonoBehaviour
         tempColor = mainText.color;
         tempColor.a = 0;
         mainText.color = tempColor;
+        tree.GetComponent<SpriteRenderer>().color = tempColor;
+        hat.GetComponent<SpriteRenderer>().color = tempColor;
 
         tempColor = tabToStartText.color;
         tempColor.a = 0;
@@ -61,6 +65,26 @@ public class MenuManager : MonoBehaviour
         }
         star.GetComponent<Twinkle>().onTwinkle = true;
         menuObject.onStart = true;
+
+        StartCoroutine(ChristmasEffectStart());
+    }
+
+    IEnumerator ChristmasEffectStart()
+    {
+        yield return new WaitForSeconds(0.2f);
+        StartCoroutine(FadeManager.FadeIn(hat.GetComponent<SpriteRenderer>(), 1));
+        StartCoroutine(FadeManager.FadeIn(tree.GetComponent<SpriteRenderer>(), 1));
+    }
+
+    IEnumerator ChristmasEffectEnd()
+    {
+        yield return new WaitForSeconds(1);
+        while (tree.transform.position.x > -20)
+        {
+            tree.transform.position -= new Vector3(3f * Time.deltaTime, 0, 0);
+            hat.transform.position -= new Vector3(3f * Time.deltaTime, 0, 0);
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     public IEnumerator EndMenuEffect()
@@ -69,6 +93,7 @@ public class MenuManager : MonoBehaviour
         Color tempColor;
         tempColor = mainText.color;
 
+        StartCoroutine(ChristmasEffectEnd());
         timeTemp = 0;
         while (timeTemp < 1)
         {

@@ -535,7 +535,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   languageType: 0
-  pauseMenuManager: {fileID: 0}
 --- !u!4 &403276995
 Transform:
   m_ObjectHideFlags: 0
@@ -1322,6 +1321,7 @@ MonoBehaviour:
   - {fileID: 8198044860580497520, guid: 76b74213e7359064cbd4954f7f37a57e, type: 3}
   - {fileID: 6739919762272169340, guid: 5978f62e01b768446bf31d14b59f40b8, type: 3}
   - {fileID: 8198044860580497520, guid: 18efe0a55492da340ad09c7d3d3d8260, type: 3}
+  - {fileID: 1285937601926700252, guid: 944f94338737ba34b9a7be2a48fdc096, type: 3}
   star: {fileID: 3343613957159020421, guid: 3c52426f7a1714f47bb87be3c64a2b8a, type: 3}
   limiterGet: {fileID: 1049005958256129159, guid: 9fe50ac3c5074744683913a6af8298ac, type: 3}
   endDistance: 4370
@@ -1338,6 +1338,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 11597f94f71a7c74280c5602f30863d0, type: 3}
   - {fileID: 8300000, guid: f5928df65d779ac43a713dd38e3515c3, type: 3}
   - {fileID: 8300000, guid: 6e5821ce44386cf488eb885e2afe0976, type: 3}
+  - {fileID: 8300000, guid: 731652a90d0823b469f801c04e9f8a23, type: 3}
+  - {fileID: 8300000, guid: 46c7d585d4b07c84ab7379331ca0641a, type: 3}
   planets:
   - {fileID: 2882485816637794722, guid: 480e63a9d8e74074ea85937c30710846, type: 3}
   - {fileID: 9085257122208137620, guid: 7cd27d075830ee143872c11714e15615, type: 3}
@@ -1345,6 +1347,10 @@ MonoBehaviour:
   - {fileID: 815299293871831055, guid: 49b7c57776ab3a74787cdbf76ec22e85, type: 3}
   - {fileID: 8929145644943836870, guid: 3455c1942aefec044997b9cf4f23af70, type: 3}
   distanceSlider: {fileID: 1611983338}
+  rocketPrefab: {fileID: 8198044860580497520, guid: 45872b17c2cc5084a96e0dae197c9846, type: 3}
+  dangerPrefab: {fileID: 8842087308014688272, guid: 1c1016cc1086d86438daafca0328771b, type: 3}
+  rocketGenMin: 5
+  rocketGenMax: 10
 --- !u!4 &915265344
 Transform:
   m_ObjectHideFlags: 0
@@ -1718,9 +1724,10 @@ MonoBehaviour:
   normalSana: {fileID: 21300000, guid: 0e392451166da754d83e22b1d2452474, type: 3}
   bigSana: {fileID: 21300000, guid: 07e595fda1d944641a6d9f63858ec37d, type: 3}
   hitSanas:
-  - {fileID: 21300000, guid: 07e595fda1d944641a6d9f63858ec37d, type: 3}
+  - {fileID: 21300000, guid: 3c532173153dd074cb446cf6ee458474, type: 3}
   - {fileID: 21300000, guid: 01b3e5215a0d67c498fbadb3fef6208b, type: 3}
   - {fileID: 21300000, guid: 0e7d7d370cc767f46bfe5a7b868474a1, type: 3}
+  - {fileID: 21300000, guid: 07e595fda1d944641a6d9f63858ec37d, type: 3}
   movable: 0
   limiterBar: {fileID: 1690891280}
 --- !u!212 &1434340263

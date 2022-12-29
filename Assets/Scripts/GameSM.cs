@@ -38,8 +38,15 @@ public class GameSM : MonoBehaviour
     int planetCount = 0;
 
     public Slider distanceSlider;
+
+    //rocketTime
+    [SerializeField] GameObject rocketPrefab, dangerPrefab;
+    [SerializeField] int rocketGenMin, rocketGenMax;
+    float rocketTime = 0;
+    float timeCheck2 = 0;
     void Start()
     {
+        rocketTime = Random.Range(rocketGenMin, rocketGenMax);
         obstacleList = new List<GameObject>();
         nextTime = Random.Range(0, 1.2f);
         limiterNextTime = Random.Range(0, 2.4f);
@@ -117,7 +124,27 @@ public class GameSM : MonoBehaviour
             timeCheck1 = 0;
             limiterNextTime = Random.Range(1f, 3.4f);
         }
+
+        timeCheck2 += Time.deltaTime;
+        if (gameEnd == false && timeCheck2 >= rocketTime - (speed / 15.0))
+        {
+            StartCoroutine(RocketLaunch());
+            timeCheck2 = 0;
+            rocketTime = Random.Range(rocketGenMin, rocketGenMax);
+        }
+    }
+
+    IEnumerator RocketLaunch()
+    {
+        Vector3 rocketPos = new Vector3(0, 0, 0);
+        rocketPos.x = Random.Range(-8.5f, 6f);
+        rocketPos.y = -4.85f;
+        GameObject tempDanger = Instantiate(dangerPrefab, rocketPos, Quaternion.identity);
         
+        yield return new WaitForSeconds(2);
+        Destroy(tempDanger);
+        rocketPos.y = -6.7f;
+        Instantiate(rocketPrefab, rocketPos, Quaternion.identity);
     }
 
     private void FixedUpdate()
@@ -201,5 +228,11 @@ public class GameSM : MonoBehaviour
         sfxaudioSource.clip = sfxClips[4];
         sfxaudioSource.Play();
 
+    }
+
+    public void GiftSfx()
+    {
+        sfxaudioSource.clip = sfxClips[5];
+        sfxaudioSource.Play();
     }
 }
