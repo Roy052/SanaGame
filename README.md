@@ -1,7 +1,7 @@
 # Sana's Long Long Journey
 <div>
     <h2> 게임 정보 </h2>
-    <img src = "https://img.itch.zone/aW1nLzk2NDEyMTMucG5n/347x500/MmRWeX.png"><br>
+    <img src = "https://img.itch.zone/aW1nLzEwODkzOTEwLnBuZw==/315x250%23c/AL4pCL.png"><br>
     <img src="https://img.shields.io/badge/Unity-yellow?style=flat-square&logo=Unity&logoColor=FFFFFF"/>
     <img src="https://img.shields.io/badge/Racing-pink"/>
     <h4> 개발 일자 : 2022.07 <br><br>
